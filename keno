@@ -1,34 +1,49 @@
-import random
+from random import randint
+import Tkinter
+import tkMessageBox
 
 
-def read_drewn_numbs(): #arvotut luvut
-  drawn_numbs = []
-  drawn_numbs_set = set()
-  while len(drawn_numbs) < 70:
-    x = randint(1,70)
-    if x not in drawn_numbs:
-      drawn_numbs.append(x)
-      drawn_numbs_set.add(x)
+top = Tkinter.Tk()
+
+def helloCallBack():
+   tkMessageBox.showinfo( "Hello Python", "Hello World")
+
+def readDrawnNumbs(): #arvotut luvut
+    drawnNumbs = []
+    drawnNumbsSet = set()
+    while len(drawnNumbs) < 20:
+        x = randint(1,70)
+        if x not in drawnNumbs:
+            drawnNumbs.append(x)
+            drawnNumbsSet.add(x)
+    tkMessageBox.showinfo("Drawn", str(drawnNumbsSet))
+
+draw = Tkinter.Button(top, text ="Draw", command = readDrawnNumbs)
+
+Hell = Tkinter.Button(top, text ="Hello", command = helloCallBack)
+
+draw.pack()
+Hell.pack()
+
+top.mainloop()
+
   
+def readGuessedNumbs():
+    guessedNumbsSet = set()
+    guess = eval(raw_input("Which numbers would you like to choose? "))
+    for i in range(len(guess)):
+        guessedNumbsSet.add(guess[i])
+    print "You have chosen numbers: " + guessedNumbsSet
   
-
   
 """  
   
 for i in range(1, 71):
-  drawn_numbs
-  if
-  randint(1,70)
-  
-  
-  
-  
-def read_drewn_numbs(): #arvotut luvut
-  
+    drawn_numbs
+    if
+    randint(1,70)
   
   
 def read_numb_amount(): #valittujen lukujen määrä
   len(mylist) #listan pituus
-
-def 
 """  
