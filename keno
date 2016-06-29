@@ -1,6 +1,74 @@
-from random import randint
-import Tkinter
+from Tkinter import Tk, Text, BOTH, W, N, E, S
+from Tkinter import *
+from ttk import Frame, Button, Label, Style
 import tkMessageBox
+from random import randint
+
+
+class Keno(Frame):
+  
+    def __init__(self, parent):
+        Frame.__init__(self, parent)   
+         
+        self.parent = parent
+        self.initUI()
+
+
+    def readDrawnNumbs(self): #arvotut luvut
+        drawnNumbs = []
+        while len(drawnNumbs) < 20:
+            x = randint(1,70)
+            if x not in drawnNumbs:
+                drawnNumbs.append(x)
+        drawnNumbs.sort()
+        area.insert(INSERT, str(drawnNumbs))        
+        
+    def initUI(self):
+      
+        self.parent.title("Keno")
+        self.pack(fill=BOTH, expand=True)
+
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(3, pad=7)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(5, pad=7)
+        
+        lbl = Label(self, text="Windows")
+        lbl.grid(sticky=W, pady=4, padx=5)
+        
+        area = Text(self)
+        area.grid(row=1, column=0, columnspan=2, rowspan=4, 
+            padx=5, sticky=E+W+S+N)
+        
+        
+        choose = Button(self, text="Choose")
+        choose.grid(row=1, column=3)
+
+        bet = Button(self, text="Bet")
+        bet.grid(row=2, column=3, pady=4)
+        
+        hbtn = Button(self, text="Help")
+        hbtn.grid(row=5, column=0, padx=5)
+
+        drawNu = Button(self, text="Draw", command = self.readDrawnNumbs)
+        drawNu.grid(row=5, column=3)        
+              
+def main():
+  
+    root = Tk()
+    root.geometry("350x300+300+300")
+    app = Keno(root)
+    root.mainloop()  
+
+if __name__ == '__main__':
+    main()  
+
+
+
+#######
+
+
+
 
 
 top = Tkinter.Tk()
@@ -9,41 +77,22 @@ def helloCallBack():
    tkMessageBox.showinfo( "Hello Python", "Hello World")
 
 def readDrawnNumbs(): #arvotut luvut
-    drawnNumbs = []
-    drawnNumbsSet = set()
-    while len(drawnNumbs) < 20:
-        x = randint(1,70)
-        if x not in drawnNumbs:
-            drawnNumbs.append(x)
-            drawnNumbsSet.add(x)
-    tkMessageBox.showinfo("Drawn", str(drawnNumbsSet))
+   drawnNumbs = []
+   while len(drawnNumbs) < 20:
+      x = randint(1,70)
+      if x not in drawnNumbs:
+         drawnNumbs.append(x)
+   drawnNumbs.sort()
+   tkMessageBox.showinfo("Drawn", str(drawnNumbs))
+
+
 
 draw = Tkinter.Button(top, text ="Draw", command = readDrawnNumbs)
-
-Hell = Tkinter.Button(top, text ="Hello", command = helloCallBack)
+draw.grid(row=5, column=3)
+hell = Tkinter.Button(top, text ="Hello", command = helloCallBack)
+hell.grid(row=5, column=0, padx=5)
 
 draw.pack()
-Hell.pack()
+hell.pack()
 
 top.mainloop()
-
-  
-def readGuessedNumbs():
-    guessedNumbsSet = set()
-    guess = eval(raw_input("Which numbers would you like to choose? "))
-    for i in range(len(guess)):
-        guessedNumbsSet.add(guess[i])
-    print "You have chosen numbers: " + guessedNumbsSet
-  
-  
-"""  
-  
-for i in range(1, 71):
-    drawn_numbs
-    if
-    randint(1,70)
-  
-  
-def read_numb_amount(): #valittujen lukujen määrä
-  len(mylist) #listan pituus
-"""  
